@@ -5,6 +5,7 @@ from pushbullet import Pushbullet
 from keys import pushbullet_key
 
 
+
 def push(key, alert_title, alert_text):
     pb = Pushbullet(key)
     pb.push_note(alert_title, alert_text)
@@ -20,7 +21,7 @@ def get_product_description(product_id):
     elif product_id == str(77464001):
         return "Neon Switch"
     elif product_id == str(50218991):
-        return "Witch Hazel"
+        return "Witch Hazel" # added for testing
     else:
         return "unk product"
 
