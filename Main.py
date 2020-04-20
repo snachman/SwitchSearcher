@@ -5,7 +5,7 @@ from pushbullet import Pushbullet
 from keys import pushbullet_key
 
 def tweet():
-    t = True
+    t = False
     pass
 
 def push(key, alert_title, alert_text):
