@@ -5,7 +5,6 @@ from pushbullet import Pushbullet
 from keys import pushbullet_key
 
 
-
 def push(key, alert_title, alert_text):
     pb = Pushbullet(key)
     pb.push_note(alert_title, alert_text)
@@ -54,7 +53,7 @@ def get_data(list_of_zips):
                 # f.write(entry + "\n")
                 if count_in_stock > 0.0: # even when it shows limited availability on the website, it may say 0 in stock, limited availablity might mean they only have a display unit which is not for sale
                     if available_to_order_ahead:
-                        push(pushbullet_key, get_product_description(product_id) + "FOUND", location)
+                        push(pushbullet_key, get_product_description(product_id) + " FOUND", location)
                         # print(get_product_description(product_id) + " available for order ahead: " + location)
                     else:
                         print(get_product_description(product_id) + " found at: " + location + " but is not available for order ahead")
