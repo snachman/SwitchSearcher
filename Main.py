@@ -5,6 +5,10 @@ from pushbullet import Pushbullet
 from keys import pushbullet_key
 
 
+def tweet(body):
+    pass
+
+
 def push(key, alert_title, alert_text):
     pb = Pushbullet(key)
     pb.push_note(alert_title, alert_text)
