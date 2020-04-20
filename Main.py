@@ -56,17 +56,14 @@ def get_data(list_of_zips):
                     dat['products'][0]['locations'][x]['order_pickup']['availability_status'])
                 if count_in_stock > 0.0: # even when it shows limited availability on the website, it may say 0 in stock, limited availablity might mean they only have a display unit which is not for sale
                     if available_to_order_ahead:
-                        push(keys.pushbullet_key, get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
-                        # response = (get_product_description(product_id) + " available for order ahead: " + location)
-                        # print(response)
-                        tweet(get_product_description(product_id) + " available at " + location + ". They are reporting " + str(count_in_stock)) + "."
+                        # push(keys.pushbullet_key, get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
+                        tweet_message = (get_product_description(product_id) + " available at " + location + ". They are reporting " + str(count_in_stock) + ". IT IS AVAILABLE FOR ORDER AHEAD!")
+                        print(tweet_message)
                     else:
-                        push(keys.pushbullet_key, get_product_description(product_id) + " found", location + "\n" + "not available for order ahead.")
-                        # response = (get_product_description(product_id) + " found at: " + location + " but is not available for order ahead")
-                        # print(response)
-                        tweet(get_product_description(product_id) + " available at " + location + ". They are reporting " + str(count_in_stock)) + "."
+                        # push(keys.pushbullet_key, get_product_description(product_id) + " found", location + "\n" + "not available for order ahead.")
+                        tweet_message = (get_product_description(product_id) + " available at " + location + ". They are reporting " + str(count_in_stock) + " but it is not available for ordering ahead.")
+                        print(tweet_message)
 
 
 if __name__ == '__main__':
     get_data([21076])
-
