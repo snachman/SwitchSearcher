@@ -6,7 +6,7 @@ from keys import pushbullet_key
 
 
 def tweet(body):
-    pass
+    tweet_message = body
 
 
 def push(key, alert_title, alert_text):
