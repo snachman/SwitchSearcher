@@ -4,9 +4,6 @@ import datetime
 from pushbullet import Pushbullet
 from keys import pushbullet_key
 
-def tweet():
-    t = False
-    pass
 
 def push(key, alert_title, alert_text):
     pb = Pushbullet(key)
