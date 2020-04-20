@@ -6,4 +6,3 @@ def tweet(message):
     auth.set_access_token(keys.ACCESS_TOKEN, keys.ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth)
     api.update_status(message)
-
