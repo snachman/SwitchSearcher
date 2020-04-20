@@ -24,7 +24,7 @@ def get_product_description(product_id):
         return "Neon Switch"
     elif product_id == str(50218991):
         return "Witch Hazel" # added for testing
-    elif product_id ==str():
+    elif product_id ==str(77333077):
         return "Purple/Orange Joy-Con" # added for testing
     else:
         return "unk product"
