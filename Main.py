@@ -60,13 +60,13 @@ def get_data(list_of_zips):
                     dat['products'][0]['locations'][x]['order_pickup']['availability_status'])
                 if count_in_stock > 0.0:
                     if available_to_order_ahead:
-                        push(keys.pushbullet_key, get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
+                        push(get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + ". IT IS AVAILABLE FOR ORDER AHEAD!")
                         # tweet(tweet_message)
                     else:
-                        push(keys.pushbullet_key, get_product_description(product_id) + " found", location + "\n" + "not available for order ahead.")
+                        push(get_product_description(product_id) + " found", location + "\n" + "not available for order ahead.")
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + " but it is not available for ordering ahead.")
