@@ -6,8 +6,8 @@ import keys
 from Tweeter import tweet
 
 
-def push(key, alert_title, alert_text):
-    pb = Pushbullet(key)
+def push(alert_title, alert_text):
+    pb = Pushbullet(keys.pushbullet_key)
     pb.push_note(alert_title, alert_text)
 
 
@@ -71,4 +71,5 @@ def get_data(list_of_zips):
 
 
 if __name__ == '__main__':
+    push("SwitchSearcher", "running")
     get_data([21076])
