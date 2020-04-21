@@ -76,3 +76,4 @@ def get_data(list_of_zips):
 if __name__ == '__main__':
     push(alert_title="SwitchSearcher", alert_text="running")
     get_data([21076])
+    push(alert_title="SwitchSearcher", alert_text="complete")
