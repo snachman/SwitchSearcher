@@ -10,7 +10,7 @@ from Tweeter import tweet
 
 def log(message):
     f = open("log.txt", "a")
-    line = get_timestamp() + " - " + message
+    line = str(get_timestamp()) + " - " + message
     f.write(line)
     f.close()
 
@@ -50,9 +50,6 @@ def get_data(list_of_zips):
             zip_code) + "&limit=20&requested_quantity=1&radius=5000&include_only_available_stores=true&fulfillment_test_mode=grocery_opu_team_member_test' -H 'authority: api.target.com' -H 'accept: application/json' -H 'dnt: 1' -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36' -H 'origin: https://www.target.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'referer: https://www.target.com/p/nintendo-switch-with-gray-joy-con/-/A-77464002' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9,fr-FR;q=0.8,fr;q=0.7' --compressed"
         neon_switch_in_stock_only = "curl 'https://api.target.com/fulfillment_aggregator/v1/fiats/77464001?key=eb2551e4accc14f38cc42d32fbc2b2ea&nearby=" + str(
             zip_code) + "&limit=20&requested_quantity=1&radius=5000&include_only_available_stores=true&fulfillment_test_mode=grocery_opu_team_member_test' -H 'authority: api.target.com' -H 'accept: application/json' -H 'dnt: 1' -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36' -H 'origin: https://www.target.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'referer: https://www.target.com/s?searchTerm=nintendo+switch' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9,fr-FR;q=0.8,fr;q=0.7' --compressed"
-        witch_hazel_in_stock_only = "curl 'https://api.target.com/fulfillment_aggregator/v1/fiats/50218991?key=eb2551e4accc14f38cc42d32fbc2b2ea&nearby=" + str(
-            zip_code) + "&limit=20&requested_quantity=1&radius=5000&include_only_available_stores=true&fulfillment_test_mode=grocery_opu_team_member_test' -H 'authority: api.target.com' -H 'accept: application/json' -H 'dnt: 1' -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36' -H 'origin: https://www.target.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'referer: https://www.target.com/p/t-n-dickinson-s-witch-hazel-cleansing-cloths-25ct/-/A-50218991' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9,fr-FR;q=0.8,fr;q=0.7' --compressed"
-        purple_orange_joycon = "curl 'https://api.target.com/fulfillment_aggregator/v1/fiats/77333077?key=eb2551e4accc14f38cc42d32fbc2b2ea&nearby=21030&limit=20&requested_quantity=1&radius=5000&include_only_available_stores=true&fulfillment_test_mode=grocery_opu_team_member_test' -H 'authority: api.target.com' -H 'accept: application/json' -H 'dnt: 1' -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36' -H 'origin: https://www.target.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'referer: https://www.target.com/s?searchTerm=nintendo+switch&tref=typeahead%7Cterm%7C2%7Cnintendo+switch%7C%7C%7C%7Chistory&category=0%7CAll%7Cmatchallpartial%7Call+categories&Nao=24' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9,fr-FR;q=0.8,fr;q=0.7' --compressed"
         list_of_items = [gray_switch_in_stock_only, neon_switch_in_stock_only]
         for item in list_of_items:
             time.sleep(60)
@@ -65,20 +62,20 @@ def get_data(list_of_zips):
                 count_in_stock = (dat['products'][0]['locations'][x]['location_available_to_promise_quantity'])
                 available_to_order_ahead = get_order_pickup(
                     dat['products'][0]['locations'][x]['order_pickup']['availability_status'])
-                log(get_product_description(product_id) + "")
+                log(get_product_description(product_id))
                 if count_in_stock > 0.0:
                     if available_to_order_ahead:
                         push(get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + ". IT IS AVAILABLE FOR ORDER AHEAD!")
-                        # tweet(tweet_message)
+                        log(tweet_message)
                     else:
-                        push(get_product_description(product_id) + " found", location + "\n" + "not available for order ahead.")
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + " but it is not available for ordering ahead.")
-                        # tweet(tweet_message)
+                        push(get_product_description(product_id) + " found", tweet_message)
+                        log(tweet_message)
 
 
 if __name__ == '__main__':
