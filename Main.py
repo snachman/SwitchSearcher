@@ -68,7 +68,7 @@ def get_data(list_of_zips):
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + ". IT IS AVAILABLE FOR ORDER AHEAD!")
                         log(tweet_message)
-                        tweet(tweet_message)
+                        # tweet(tweet_message)
 
                     else:
                         tweet_message = (get_product_description(
@@ -76,7 +76,7 @@ def get_data(list_of_zips):
                             int(count_in_stock)) + " but it is not available for ordering ahead but hopefully it's actually there.")
                         push(get_product_description(product_id) + " found", tweet_message)
                         log(tweet_message)
-                        tweet(tweet_message)
+                        # tweet(tweet_message)
 
 
 if __name__ == '__main__':
