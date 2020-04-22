@@ -63,23 +63,23 @@ def get_data(list_of_zips):
                 log(get_product_description(product_id))
                 if count_in_stock > 0.0:
                     if available_to_order_ahead:
-                        push(get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
+                        # push(get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + ". IT IS AVAILABLE FOR ORDER AHEAD!")
                         log(tweet_message)
-                        # tweet(tweet_message)
+                        tweet(tweet_message)
 
                     else:
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + " but it is not available for ordering ahead but hopefully it's actually there.")
-                        push(get_product_description(product_id) + " found", tweet_message)
+                        # push(get_product_description(product_id) + " found", tweet_message)
                         log(tweet_message)
-                        # tweet(tweet_message)
+                        tweet(tweet_message)
 
 
 if __name__ == '__main__':
-    push(alert_title="", alert_text="begin")
+    log("begin")
     get_data([21076])
-    push(alert_title="", alert_text="complete")
+    log("complete")
