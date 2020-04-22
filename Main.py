@@ -4,8 +4,15 @@ import datetime
 from pushbullet import Pushbullet
 import keys
 import time
+from time import strptime
 from Tweeter import tweet
 
+
+def log(message):
+    f = open("log.txt", "a")
+    line = get_timestamp() + " - " + message
+    f.write(line)
+    f.close()
 
 def push(alert_title, alert_text):
     pb = Pushbullet(keys.pushbullet_key)
@@ -13,7 +20,8 @@ def push(alert_title, alert_text):
 
 
 def get_timestamp():
-    return str(datetime.datetime.now())
+    now = datetime.datetime.now()
+    return now.strftime("%c")
 
 
 def get_product_description(product_id):
@@ -48,7 +56,6 @@ def get_data(list_of_zips):
         list_of_items = [gray_switch_in_stock_only, neon_switch_in_stock_only]
         for item in list_of_items:
             time.sleep(60)
-            push(alert_title="SwitchSearcher", alert_text="item search")
             dat = os.popen(item).read()
             dat = json.loads(dat)
             number_of_locations = len(dat['products'][0]['locations'])
@@ -58,6 +65,7 @@ def get_data(list_of_zips):
                 count_in_stock = (dat['products'][0]['locations'][x]['location_available_to_promise_quantity'])
                 available_to_order_ahead = get_order_pickup(
                     dat['products'][0]['locations'][x]['order_pickup']['availability_status'])
+                log(get_product_description(product_id) + "")
                 if count_in_stock > 0.0:
                     if available_to_order_ahead:
                         push(get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
@@ -74,6 +82,4 @@ def get_data(list_of_zips):
 
 
 if __name__ == '__main__':
-    push(alert_title="SwitchSearcher", alert_text="running")
     get_data([21076])
-    push(alert_title="SwitchSearcher", alert_text="complete")
