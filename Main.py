@@ -11,7 +11,7 @@ from urllib import parse
 
 def log(message):
     f = open("log.txt", "a")
-    line = str(get_timestamp()) + " - " + message + "\n"
+    line = str(get_timestamp()) + " - " + message.replace("\n", " ") + "\n"
     f.write(line)
     f.close()
 
