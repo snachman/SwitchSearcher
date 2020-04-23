@@ -84,6 +84,7 @@ def get_data(list_of_zips):
 
 
 if __name__ == '__main__':
+    # test comment
     log("begin")
     get_data([21076])
     log("complete")
