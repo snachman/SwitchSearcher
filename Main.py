@@ -6,6 +6,7 @@ import keys
 import time
 from time import strptime
 from Tweeter import tweet
+from urllib import parse
 
 
 def log(message):
@@ -57,23 +58,28 @@ def get_data(list_of_zips):
             for x in range(number_of_locations):
                 product_id = (dat['products'][0]['product_id'])
                 location = (dat['products'][0]['locations'][x]['store_name'])
+                store_address = (dat['products'][0]['locations'][x]['store_address'])
                 count_in_stock = (dat['products'][0]['locations'][x]['location_available_to_promise_quantity'])
                 available_to_order_ahead = get_order_pickup(
                     dat['products'][0]['locations'][x]['order_pickup']['availability_status'])
                 log(get_product_description(product_id))
+                store_address = store_address.replace(" ", "+")
+                google_map = "https://www.google.com/maps/search/?api=1&query=" + parse.quote(store_address, safe='+')
+                print(map)
+
                 if count_in_stock > 0.0:
                     if available_to_order_ahead:
                         # push(get_product_description(product_id) + " FOUND", location + "\n" + "IT IS AVAILABLE FOR ORDER AHEAD!")
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
-                            int(count_in_stock)) + ". IT IS AVAILABLE FOR ORDER AHEAD!")
+                            int(count_in_stock)) + ". IT IS AVAILABLE FOR ORDER AHEAD!" + "\n\n" + google_map)
                         log(tweet_message)
                         tweet(tweet_message)
 
                     else:
                         tweet_message = (get_product_description(
                             product_id) + " available at " + location + ". They are reporting " + str(
-                            int(count_in_stock)) + " but it is not available for ordering ahead but hopefully it's actually there.")
+                            int(count_in_stock)) + " but it is not available for ordering ahead so hopefully it's actually there." + "\n\n" + google_map)
                         # push(get_product_description(product_id) + " found", tweet_message)
                         log(tweet_message)
                         tweet(tweet_message)
