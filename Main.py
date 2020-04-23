@@ -10,10 +10,11 @@ from urllib import parse
 
 
 def log(message):
-    f = open("log.txt", "a")
+    f = open("./log.txt", "a")
     line = str(get_timestamp()) + " - " + message.replace("\n", " ") + "\n"
     f.write(line)
     f.close()
+
 
 def push(alert_title, alert_text):
     pb = Pushbullet(keys.pushbullet_key)
@@ -73,7 +74,7 @@ def get_data(list_of_zips):
                             product_id) + " available at " + location + ". They are reporting " + str(
                             int(count_in_stock)) + ". IT IS AVAILABLE FOR ORDER AHEAD!" + "\n\n" + google_map)
                         log(tweet_message)
-                        tweet(tweet_message)
+                        # tweet(tweet_message)
 
                     else:
                         tweet_message = (get_product_description(
@@ -81,7 +82,7 @@ def get_data(list_of_zips):
                             int(count_in_stock)) + " but it is not available for ordering ahead so hopefully it's actually there." + "\n\n" + google_map)
                         # push(get_product_description(product_id) + " found", tweet_message)
                         log(tweet_message)
-                        tweet(tweet_message)
+                        # tweet(tweet_message)
 
 
 if __name__ == '__main__':
