@@ -65,7 +65,6 @@ def get_data(list_of_zips):
                 log(get_product_description(product_id))
                 store_address = store_address.replace(" ", "+")
                 google_map = "https://www.google.com/maps/search/?api=1&query=" + parse.quote(store_address, safe='+')
-                print(map)
 
                 if count_in_stock > 0.0:
                     if available_to_order_ahead:
