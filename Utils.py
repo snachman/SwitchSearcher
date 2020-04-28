@@ -105,6 +105,3 @@ def get_state(string):
         return 'WY'
     else:
         return "State Unknown"
-
-# test
-print(get_state("Address VA 33333"))
