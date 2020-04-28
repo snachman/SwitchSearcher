@@ -77,10 +77,10 @@ def get_data(list_of_zips):
                         tweet(tweet_message)
                         log(tweet_message)
                     else:
-                        print(store_state)
-                        tweet_message = (store_state + ": " + get_product_description(
+                        tweet_message = (get_product_description(
                             product_id) + " available at the " + location + " Target. They are reporting " + str(
                             int(count_in_stock)) + " but it is not available for ordering ahead so hopefully it's actually there." + "\n\n" + google_map)
+                        tweet(tweet_message)
                         log(tweet_message)
 
 
