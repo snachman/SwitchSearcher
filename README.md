@@ -7,4 +7,4 @@ This is a Twitter bot that reads the Target website and checks for availablity o
 
 This started as a personal need but decided that it might be a fun bot to make. I can't express enough how important social distancing is at the time this bot was launched and that frivilous trips to the store should not be made.
 
-![Example](/images/tweet.png)
+![Example](/images/tweet.PNG)
